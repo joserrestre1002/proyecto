@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRUDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="documentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="30" />
+    <Property Name="Archivo" Type="varbinary(max)" />
+    <Property Name="idProspecto" Type="int" />
+  </EntityType>
+  <EntityType Name="tablaProspectos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="30" />
+    <Property Name="Primer_Apellido" Type="varchar" MaxLength="20" />
+    <Property Name="Segundo_Apellido" Type="varchar" MaxLength="20" />
+    <Property Name="Calle" Type="varchar" MaxLength="50" />
+    <Property Name="Numero" Type="varchar" MaxLength="20" />
+    <Property Name="Colonia" Type="varchar" MaxLength="50" />
+    <Property Name="Codigo_Postal" Type="bigint" />
+    <Property Name="Telefono" Type="bigint" />
+    <Property Name="RFC" Type="varchar" MaxLength="30" />
+    <Property Name="Estatus" Type="varchar" MaxLength="25" />
+    <Property Name="Notas" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK__documento__idPro__25518C17">
+    <End Role="tablaProspectos" Type="Self.tablaProspectos" Multiplicity="0..1" />
+    <End Role="documentos" Type="Self.documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tablaProspectos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="documentos">
+        <PropertyRef Name="idProspecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Edad" Type="int" Mode="In" />
+    <Parameter Name="Correo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_listar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_load" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_read" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_readP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Edad" Type="int" Mode="In" />
+    <Parameter Name="Correo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_updateP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoUno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoDos" Type="varchar" Mode="In" />
+    <Parameter Name="Calle" Type="varchar" Mode="In" />
+    <Parameter Name="Numero" Type="varchar" Mode="In" />
+    <Parameter Name="Colonia" Type="varchar" Mode="In" />
+    <Parameter Name="CodigoPostal" Type="bigint" Mode="In" />
+    <Parameter Name="Telefono" Type="bigint" Mode="In" />
+    <Parameter Name="rfc" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="Notas" Type="varchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="CRUDModelStoreContainer">
+    <EntitySet Name="documentos" EntityType="Self.documentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tablaProspectos" EntityType="Self.tablaProspectos" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__documento__idPro__25518C17" Association="Self.FK__documento__idPro__25518C17">
+      <End Role="tablaProspectos" EntitySet="tablaProspectos" />
+      <End Role="documentos" EntitySet="documentos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

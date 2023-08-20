@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRUDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CRUD.dbo.documentos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="documentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="30" />
+    <Property Name="Primer_Apellido" Type="varchar" MaxLength="15" />
+    <Property Name="Segundo_Apellido" Type="varchar" MaxLength="15" />
+    <Property Name="Calle" Type="varchar" MaxLength="40" />
+    <Property Name="Numero" Type="bigint" />
+    <Property Name="Colonia" Type="varchar" MaxLength="40" />
+    <Property Name="Codigo_Postal" Type="int" />
+    <Property Name="Telefono" Type="bigint" />
+    <Property Name="RFC" Type="varchar" MaxLength="25" />
+    <Property Name="Archivos" Type="varbinary(max)" />
+    <Property Name="Estatus" Type="varchar" MaxLength="25" />
+    <Property Name="observaciones" Type="varchar(max)" />
+  </EntityType>
+  <EntityContainer Name="CRUDModelStoreContainer">
+    <EntitySet Name="documentos" EntityType="Self.documentos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [documentos].[Id] AS [Id], 
+    [documentos].[Nombre] AS [Nombre], 
+    [documentos].[Primer_Apellido] AS [Primer_Apellido], 
+    [documentos].[Segundo_Apellido] AS [Segundo_Apellido], 
+    [documentos].[Calle] AS [Calle], 
+    [documentos].[Numero] AS [Numero], 
+    [documentos].[Colonia] AS [Colonia], 
+    [documentos].[Codigo_Postal] AS [Codigo_Postal], 
+    [documentos].[Telefono] AS [Telefono], 
+    [documentos].[RFC] AS [RFC], 
+    [documentos].[Archivos] AS [Archivos], 
+    [documentos].[Estatus] AS [Estatus], 
+    [documentos].[observaciones] AS [observaciones]
+    FROM [dbo].[documentos] AS [documentos]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

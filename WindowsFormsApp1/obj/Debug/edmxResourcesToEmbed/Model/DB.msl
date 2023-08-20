@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CRUDModelStoreContainer" CdmEntityContainer="EntidadCRUDP">
+    <EntitySetMapping Name="documentos">
+      <EntityTypeMapping TypeName="CRUDModel.documento">
+        <MappingFragment StoreEntitySet="documentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+          <ScalarProperty Name="idProspecto" ColumnName="idProspecto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tablaProspectos">
+      <EntityTypeMapping TypeName="CRUDModel.tablaProspecto">
+        <MappingFragment StoreEntitySet="tablaProspectos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Primer_Apellido" ColumnName="Primer_Apellido" />
+          <ScalarProperty Name="Segundo_Apellido" ColumnName="Segundo_Apellido" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+          <ScalarProperty Name="Codigo_Postal" ColumnName="Codigo_Postal" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+          <ScalarProperty Name="Notas" ColumnName="Notas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_create" FunctionName="CRUDModel.Store.sp_create" />
+    <FunctionImportMapping FunctionImportName="sp_delete" FunctionName="CRUDModel.Store.sp_delete" />
+    <FunctionImportMapping FunctionImportName="sp_listar" FunctionName="CRUDModel.Store.sp_listar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CRUDModel.sp_listar_Result">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_load" FunctionName="CRUDModel.Store.sp_load" />
+    <FunctionImportMapping FunctionImportName="sp_read" FunctionName="CRUDModel.Store.sp_read" />
+    <FunctionImportMapping FunctionImportName="sp_readP" FunctionName="CRUDModel.Store.sp_readP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CRUDModel.sp_readP_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Primer_Apellido" ColumnName="Primer_Apellido" />
+          <ScalarProperty Name="Segundo_Apellido" ColumnName="Segundo_Apellido" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+          <ScalarProperty Name="Codigo_Postal" ColumnName="Codigo_Postal" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+          <ScalarProperty Name="Notas" ColumnName="Notas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_update" FunctionName="CRUDModel.Store.sp_update" />
+    <FunctionImportMapping FunctionImportName="sp_updateP" FunctionName="CRUDModel.Store.sp_updateP" />
+  </EntityContainerMapping>
+</Mapping>

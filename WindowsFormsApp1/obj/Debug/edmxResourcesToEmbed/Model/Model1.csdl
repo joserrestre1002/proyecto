@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRUDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tablaProspecto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Primer_Apellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Segundo_Apellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Colonia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Codigo_Postal" Type="Int64" />
+    <Property Name="Telefono" Type="Int64" />
+    <Property Name="RFC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Estatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="documentos" Relationship="Self.FK__documento__idPro__25518C17" FromRole="tablaProspectos" ToRole="documentos" />
+  </EntityType>
+  <EntityType Name="documento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="idProspecto" Type="Int32" />
+    <NavigationProperty Name="tablaProspecto" Relationship="Self.FK__documento__idPro__25518C17" FromRole="documentos" ToRole="tablaProspectos" />
+  </EntityType>
+  <Association Name="FK__documento__idPro__25518C17">
+    <End Role="tablaProspectos" Type="Self.tablaProspecto" Multiplicity="0..1" />
+    <End Role="documentos" Type="Self.documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tablaProspectos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="documentos">
+        <PropertyRef Name="idProspecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EntidadesCRUD" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tablaProspectos" EntityType="Self.tablaProspecto" />
+    <EntitySet Name="documentos" EntityType="Self.documento" />
+    <AssociationSet Name="FK__documento__idPro__25518C17" Association="Self.FK__documento__idPro__25518C17">
+      <End Role="tablaProspectos" EntitySet="tablaProspectos" />
+      <End Role="documentos" EntitySet="documentos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CRUDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="documentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" />
+          <Property Name="Archivo" Type="varbinary(max)" />
+          <Property Name="idProspecto" Type="int" />
+        </EntityType>
+        <EntityType Name="tablaProspectos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" />
+          <Property Name="Primer_Apellido" Type="varchar" MaxLength="20" />
+          <Property Name="Segundo_Apellido" Type="varchar" MaxLength="20" />
+          <Property Name="Calle" Type="varchar" MaxLength="50" />
+          <Property Name="Numero" Type="varchar" MaxLength="20" />
+          <Property Name="Colonia" Type="varchar" MaxLength="50" />
+          <Property Name="Codigo_Postal" Type="bigint" />
+          <Property Name="Telefono" Type="bigint" />
+          <Property Name="RFC" Type="varchar" MaxLength="30" />
+          <Property Name="Estatus" Type="varchar" MaxLength="25" />
+          <Property Name="Notas" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__documento__idPro__25518C17">
+          <End Role="tablaProspectos" Type="Self.tablaProspectos" Multiplicity="0..1" />
+          <End Role="documentos" Type="Self.documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tablaProspectos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="documentos">
+              <PropertyRef Name="idProspecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Edad" Type="int" Mode="In" />
+          <Parameter Name="Correo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_listar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_load" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_read" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_readP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Edad" Type="int" Mode="In" />
+          <Parameter Name="Correo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_updateP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoUno" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoDos" Type="varchar" Mode="In" />
+          <Parameter Name="Calle" Type="varchar" Mode="In" />
+          <Parameter Name="Numero" Type="varchar" Mode="In" />
+          <Parameter Name="Colonia" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoPostal" Type="bigint" Mode="In" />
+          <Parameter Name="Telefono" Type="bigint" Mode="In" />
+          <Parameter Name="rfc" Type="varchar" Mode="In" />
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+          <Parameter Name="Notas" Type="varchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="CRUDModelStoreContainer">
+          <EntitySet Name="documentos" EntityType="Self.documentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tablaProspectos" EntityType="Self.tablaProspectos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__documento__idPro__25518C17" Association="Self.FK__documento__idPro__25518C17">
+            <End Role="tablaProspectos" EntitySet="tablaProspectos" />
+            <End Role="documentos" EntitySet="documentos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CRUDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="documento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="idProspecto" Type="Int32" />
+          <NavigationProperty Name="tablaProspecto" Relationship="Self.FK__documento__idPro__25518C17" FromRole="documentos" ToRole="tablaProspectos" />
+        </EntityType>
+        <EntityType Name="tablaProspecto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Primer_Apellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Segundo_Apellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Codigo_Postal" Type="Int64" />
+          <Property Name="Telefono" Type="Int64" />
+          <Property Name="RFC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="documentos" Relationship="Self.FK__documento__idPro__25518C17" FromRole="tablaProspectos" ToRole="documentos" />
+        </EntityType>
+        <Association Name="FK__documento__idPro__25518C17">
+          <End Role="tablaProspectos" Type="Self.tablaProspecto" Multiplicity="0..1" />
+          <End Role="documentos" Type="Self.documento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tablaProspectos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="documentos">
+              <PropertyRef Name="idProspecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntidadCRUDP" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="documentos" EntityType="Self.documento" />
+          <EntitySet Name="tablaProspectos" EntityType="Self.tablaProspecto" />
+          <AssociationSet Name="FK__documento__idPro__25518C17" Association="Self.FK__documento__idPro__25518C17">
+            <End Role="tablaProspectos" EntitySet="tablaProspectos" />
+            <End Role="documentos" EntitySet="documentos" />
+          </AssociationSet>
+          <FunctionImport Name="sp_create">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Edad" Mode="In" Type="Int32" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_listar" ReturnType="Collection(CRUDModel.sp_listar_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_load" />
+          <FunctionImport Name="sp_read">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_readP" ReturnType="Collection(CRUDModel.sp_readP_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Edad" Mode="In" Type="Int32" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_updateP">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="ApellidoUno" Mode="In" Type="String" />
+            <Parameter Name="ApellidoDos" Mode="In" Type="String" />
+            <Parameter Name="Calle" Mode="In" Type="String" />
+            <Parameter Name="Numero" Mode="In" Type="String" />
+            <Parameter Name="Colonia" Mode="In" Type="String" />
+            <Parameter Name="CodigoPostal" Mode="In" Type="Int64" />
+            <Parameter Name="Telefono" Mode="In" Type="Int64" />
+            <Parameter Name="rfc" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="Notas" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_listar_Result">
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="30" />
+          <Property Type="Binary" Name="Archivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_readP_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Primer_Apellido" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Segundo_Apellido" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Calle" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Numero" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Colonia" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="Codigo_Postal" Nullable="true" />
+          <Property Type="Int64" Name="Telefono" Nullable="true" />
+          <Property Type="String" Name="RFC" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Notas" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CRUDModelStoreContainer" CdmEntityContainer="EntidadCRUDP">
+          <EntitySetMapping Name="documentos">
+            <EntityTypeMapping TypeName="CRUDModel.documento">
+              <MappingFragment StoreEntitySet="documentos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+                <ScalarProperty Name="idProspecto" ColumnName="idProspecto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tablaProspectos">
+            <EntityTypeMapping TypeName="CRUDModel.tablaProspecto">
+              <MappingFragment StoreEntitySet="tablaProspectos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Primer_Apellido" ColumnName="Primer_Apellido" />
+                <ScalarProperty Name="Segundo_Apellido" ColumnName="Segundo_Apellido" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="Codigo_Postal" ColumnName="Codigo_Postal" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_create" FunctionName="CRUDModel.Store.sp_create" />
+          <FunctionImportMapping FunctionImportName="sp_delete" FunctionName="CRUDModel.Store.sp_delete" />
+          <FunctionImportMapping FunctionImportName="sp_listar" FunctionName="CRUDModel.Store.sp_listar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CRUDModel.sp_listar_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_load" FunctionName="CRUDModel.Store.sp_load" />
+          <FunctionImportMapping FunctionImportName="sp_read" FunctionName="CRUDModel.Store.sp_read" />
+          <FunctionImportMapping FunctionImportName="sp_readP" FunctionName="CRUDModel.Store.sp_readP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CRUDModel.sp_readP_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Primer_Apellido" ColumnName="Primer_Apellido" />
+                <ScalarProperty Name="Segundo_Apellido" ColumnName="Segundo_Apellido" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="Codigo_Postal" ColumnName="Codigo_Postal" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_update" FunctionName="CRUDModel.Store.sp_update" />
+          <FunctionImportMapping FunctionImportName="sp_updateP" FunctionName="CRUDModel.Store.sp_updateP" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRUDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="documento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Primer_Apellido" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Segundo_Apellido" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Calle" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Numero" Type="Int64" />
+    <Property Name="Colonia" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Codigo_Postal" Type="Int32" />
+    <Property Name="Telefono" Type="Int64" />
+    <Property Name="RFC" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Archivos" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Estatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="CRUDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="documentos" EntityType="Self.documento" />
+  </EntityContainer>
+</Schema>
