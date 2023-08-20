@@ -15,7 +15,7 @@ namespace WindowsFormsApp1.clases
 {
     internal class conexionClass
     {
-
+        //hola
         static private string CadenaConexion = "Server=PC-MASTER-RACE;DataBase=CRUD;Integrated Security=true";
         public SqlConnection Conexion = new SqlConnection(CadenaConexion);
 
